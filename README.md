@@ -42,3 +42,33 @@ Consider the scenario below: </br>
 - Admin can Read Grades.
 - Admin can Read and Write Fee Payment Status.
 - Admin can Read and Delete Course Enrollment status.
+
+
+## Access Control Table
+
+| Subjects \ Objects  | User Identification | Grading | Fee Payment | Course Enroll |
+|--------------------|-------------------|---------|------------|--------------|
+| **Student**       | R                 | R       | R          | RW           |
+| **Teacher**       | R                 | RW      | R          | R            |
+| **Admin**         | RWD               | R       | RW         | RD           |
+
+**Legend** :
+- **R** = Read
+- **W** = Write
+- **D** = Delete
+
+
+### Definition:
+- **Capability List (C-List):** A list that stores the access rights of a specific subject (user/process) over various objects.
+- **Access Control List (ACL):** A list that stores access rights of all subjects for a specific object.
+
+### Capability List (Per Subject):
+- **Student** → [User Identification (R), Grading (R), Fee Payment (R), Course Enroll (RW)]
+- **Teacher** → [User Identification (R), Grading (RW), Fee Payment (R), Course Enroll (R)]
+- **Admin** → [User Identification (RWD), Grading (R), Fee Payment (RW), Course Enroll (RD)]
+
+### Access Control List (Per Object):
+- **User Identification** → [Student (R), Teacher (R), Admin (RWD)]
+- **Grading** → [Student (R), Teacher (RW), Admin (R)]
+- **Fee Payment** → [Student (R), Teacher (R), Admin (RW)]
+- **Course Enroll** → [Student (RW), Teacher (R), Admin (RD)]
